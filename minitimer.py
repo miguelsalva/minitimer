@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
+import sys
 import time
 from playsound import playsound
 
-DEFAULT_TIME = 15  # 25min by default for Pomodoro Technique
+DEFAULT_TIME = 1500  # 25min by default for Pomodoro Technique
 
 
 def format_time(s):
@@ -23,7 +24,10 @@ def format_time(s):
 
 
 # Main
-t = DEFAULT_TIME
+if len(sys.argv) > 1:
+    t = int(sys.argv[1])
+else:
+    t = DEFAULT_TIME
 while t > 0:
     print("Remaining time: ", end = "")
     format_time(t)
