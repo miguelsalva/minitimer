@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
+#
+# FILE: minitimer.py
+# AUTHOR: Miguel Salvá
+# ABSTRACT: Timer for the CLI based on the Pomodoro Technique
+#
+# This program requires the playsound library to run
 
 import sys
 import time
 from playsound import playsound
 
 DEFAULT_TIME = 1500  # 25min by default for Pomodoro Technique
+ALARM = "vinyl-piano_100bpm_C_minor.mp3"
 
 
 def format_time(s):
@@ -28,10 +35,11 @@ if len(sys.argv) > 1:
     t = int(sys.argv[1])
 else:
     t = DEFAULT_TIME
+
 while t > 0:
     print("Remaining time: ", end = "")
     format_time(t)
     t = t - 1
     time.sleep(1)
 print("Remaining time: 00:00")    
-playsound("vinyl-piano_100bpm_C_minor.wav")
+playsound(ALARM)
