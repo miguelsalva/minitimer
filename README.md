@@ -13,6 +13,11 @@ minitimer is a CLI (Command Line Interface) application. It works fine in both L
 ### Usage
 ```$ minitimer [time]```<br>
 If you don't specify any time, the default is set to 25min (1500s), which is the standard on the Pomodoro Technique. Otherwise you should specify the time in seconds as the first argument.
+<br>
+
+### Credits
+The current alarm is a [piano wav sound](https://samplefocus.com/samples/vinyl-piano) from [Sample Focus](https://samplefocus.com), that has been converted into mp3 format.<br>
+<br>
 
 ### Contributing
 Contribution, ideas and comments are welcome
