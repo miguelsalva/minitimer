@@ -1,6 +1,5 @@
 # minitimer
-minitimer is a timing tool based on the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).
-<br>
+minitimer is a timing tool based on the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).<br>
 minitimer is a CLI (Command Line Interface) application. It works fine in both Linux shell and Windows PowerShell.
 <br>
 
@@ -11,7 +10,11 @@ minitimer is a CLI (Command Line Interface) application. It works fine in both L
 * Install dependencies: ```$ pip install -r requirements.txt```
 <br>
 
+### Usage
+```$ minitimer [time]```<br>
+If you don't specify any time, the default is set to 25min (1500s), which is the standard on the Pomodoro Technique. Otherwise you should specify the time in seconds as the first argument.
+
 ### Contributing
-Contributions are welcome
+Contribution, ideas and comments are welcome
 <br>
 
