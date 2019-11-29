@@ -17,7 +17,7 @@ If you don't specify any time, the default is set to 25min (1500s), which is the
 
 ### Credits
 The current alarm is a [piano wav sound](https://samplefocus.com/samples/vinyl-piano) from [Sample Focus](https://samplefocus.com), that has been converted into mp3 format.<br>
-Tomato icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [https://www.flaticon.com](www.flaticon.com).
+Tomato icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
 <br><br>
 
 ### Contributing
