@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import sys
 import time
+from playsound import playsound
 
-DEFAULT_TIME = 1500  # 25min by default for Pomodoro Technique
+DEFAULT_TIME = 15  # 25min by default for Pomodoro Technique
 
 
 def format_time(s):
@@ -22,10 +22,12 @@ def format_time(s):
                 print(str(minutes) + ":" + str(seconds), end="\r")
 
 
+# Main
 t = DEFAULT_TIME
 while t > 0:
     print("Remaining time: ", end = "")
     format_time(t)
     t = t - 1
     time.sleep(1)
-
+print("Remaining time: 00:00")    
+playsound("vinyl-piano_100bpm_C_minor.wav")
