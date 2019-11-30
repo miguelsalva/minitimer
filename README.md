@@ -1,7 +1,7 @@
 # minitimer
-<img src="https://image.flaticon.com/icons/svg/877/877712.svg" width="64" height="64">
 minitimer is a timing tool based on the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).<br>
-minitimer is a CLI (Command Line Interface) application. It works fine in both Linux shell and Windows PowerShell.
+minitimer is a CLI (Command Line Interface) application. It works fine in both Linux shell and Windows PowerShell.<br>
+<img src="https://image.flaticon.com/icons/svg/877/877712.svg" width="64" height="64">
 <br><br>
 
 ### Installation
