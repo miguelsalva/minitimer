@@ -6,9 +6,8 @@ minitimer is a CLI (Command Line Interface) application. It works fine in both L
 
 ### Installation
 - [ ] Clone the repo: ```$ git clone https://github.com/miguelsalva/minitimer.git```
-- [ ] Install Python3
-- [ ] Install pip[3]
-- [ ] Install dependencies: ```$ pip install -r requirements.txt```
+- [ ] Install Python3 and pip[3]
+- [ ] Install dependencies: ```$ pip[3] install -r requirements.txt```
 <br><br>
 
 ### Usage
