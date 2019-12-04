@@ -32,7 +32,13 @@ def format_time(s):
 
 # Main
 if len(sys.argv) > 1:
-    t = int(sys.argv[1])
+    if sys.argv[1][len(sys.argv[1])-1:len(sys.argv[1])] == "m":
+        t = int(sys.argv[1][0:len(sys.argv[1])-1]) * 60
+    else:
+        if sys.argv[1][len(sys.argv[1])-1:len(sys.argv[1])] == "s":
+            t = int(sys.argv[1][0:len(sys.argv[1])-1])
+        else:
+            print("Incorrect time value. Please specify time in minutes (Xm) or seconds (Ys) or leave it blank (25m by default)")
 else:
     t = DEFAULT_TIME
 
