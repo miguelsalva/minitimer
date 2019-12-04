@@ -18,7 +18,7 @@ Otherwise you should specify the time in minutes (Xm) or seconds (Ys) as the fir
 $ minitimer.py 10m
 $ minitimer.py 50s
 ```
-<br><br>
+<br>
 
 ### Credits
 The current alarm is a [piano wav sound](https://samplefocus.com/samples/vinyl-piano) from [Sample Focus](https://samplefocus.com), that has been converted into mp3 format.<br>
