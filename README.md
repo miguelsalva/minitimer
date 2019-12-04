@@ -12,7 +12,12 @@ minitimer is a CLI (Command Line Interface) application. It works fine in both L
 
 ### Usage
 ```$ minitimer.py [time]```<br>
-If you don't specify any time, the default is set to 25min (1500s), which is the standard for the Pomodoro Technique. Otherwise you should specify the time in seconds as the first argument.
+If you don't specify any time, the default is set to 25min (1500s), which is the standard for the Pomodoro Technique.<br>
+Otherwise you should specify the time in minutes (Xm) or seconds (Ys) as the first argument:<br>
+```
+$ minitimer.py 10m
+$ minitimer.py 50s
+```
 <br><br>
 
 ### Credits
