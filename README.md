@@ -28,6 +28,10 @@ The current alarm is a [piano wav sound](https://samplefocus.com/samples/vinyl-p
 Tomato icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
 <br><br>
 
+### xminitimer
+xminitimer is a GUI (Graphic User Interface) version of minitimer
+<br><br>
+
 ### Contributing
 Contribution, ideas and comments are welcome
 <br><br>
