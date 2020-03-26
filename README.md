@@ -29,7 +29,7 @@ Tomato icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [ww
 <br><br>
 
 ### xminitimer
-xminitimer is a GUI (Graphic User Interface) version of minitimer
+xminitimer is a GUI (Graphic User Interface) version of minitimer - **TBD**
 <br><br>
 
 ### Contributing
