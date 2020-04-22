@@ -1,4 +1,4 @@
-<img src="images/minitimer_logo.png">
+<h1><img src="images/minitimer_logo.png"></h1>
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=miguelsalva_minitimer&metric=alert_status)](https://sonarcloud.io/dashboard?id=miguelsalva_minitimer) <br>
 minitimer is a timing tool based on the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique).<br>
