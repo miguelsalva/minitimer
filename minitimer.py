@@ -10,7 +10,7 @@ import sys
 import time
 from playsound import playsound
 
-DEFAULT_TIME = 1500  # 25min by default for Pomodoro Technique
+DEFAULT_TIME = 1501  # 25min by default for Pomodoro Technique
 ALARM = "vinyl-piano_100bpm_C_minor.mp3"
 
 def format_time(s):
