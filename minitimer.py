@@ -10,7 +10,7 @@
 
 import sys
 import time as time_module
-from playsound import playsound
+import subprocess
 
 DEFAULT_SECONDS = 1500  # 25 minutes (Pomodoro standard)
 ALARM = "vinyl-piano_100bpm_C_minor.mp3"
@@ -50,7 +50,7 @@ def run_cli(seconds: int) -> None:
         t -= 1
         time_module.sleep(1)
     print("Remaining time: 00:00")
-    playsound(ALARM)
+    subprocess.run(["afplay", ALARM], check=False)
 
 
 # ── Entry point ────────────────────────────────────────────────────────────────
