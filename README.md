@@ -35,13 +35,24 @@ git clone https://github.com/miguelsalva/minitimer.git
 cd minitimer
 ```
 
-### 2. Install dependencies
+### 2. Create and activate a virtual environment
 
 ```bash
-pip3 install -r requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
 ```
 
 > **Requirements:** Python 3.9+, `PySide6`, `playsound`
+
+> [!NOTE]
+> On macOS with a Homebrew-managed Python, installing packages system-wide is restricted (PEP 668).
+> Using a virtual environment as shown above is the recommended approach.
 
 ---
 
