@@ -4,48 +4,68 @@
 # AUTHOR: Miguel Salvá
 # ABSTRACT: Timer for the CLI based on the Pomodoro Technique
 #
-# This program requires the playsound library to run
+# Supports both CLI and GUI modes.
+# CLI usage: python minitimer.py [time]  (e.g. 25m, 50s)
+# GUI usage: python minitimer_gui.py
 
 import sys
-import time
+import time as time_module
 from playsound import playsound
 
-DEFAULT_TIME = 1501  # 25min by default for Pomodoro Technique
+DEFAULT_SECONDS = 1500  # 25 minutes (Pomodoro standard)
 ALARM = "vinyl-piano_100bpm_C_minor.mp3"
 
-def format_time(s):
-    """Function that gets a time in seconds and returns it in format MM:SS"""
-    minutes = int(s / 60)
-    seconds = s % 60
-    if minutes < 10 and seconds < 10:
-        print("0"+ str(minutes) + ":" + "0" + str(seconds), end="\r")
+
+def format_time(seconds: int) -> str:
+    """Return a time in seconds as a zero-padded MM:SS string."""
+    minutes = seconds // 60
+    secs = seconds % 60
+    return f"{minutes:02d}:{secs:02d}"
+
+
+def parse_time_arg(arg: str) -> int | None:
+    """
+    Parse a CLI time argument and return the equivalent number of seconds.
+    Accepts formats: Xm (minutes) or Ys (seconds).
+    Returns None if the format is invalid.
+    """
+    if arg.endswith("m"):
+        try:
+            return int(arg[:-1]) * 60
+        except ValueError:
+            return None
+    elif arg.endswith("s"):
+        try:
+            return int(arg[:-1])
+        except ValueError:
+            return None
+    return None
+
+
+def run_cli(seconds: int) -> None:
+    """Run the timer in CLI mode, printing countdown to stdout."""
+    t = seconds
+    while t > 0:
+        print(f"Remaining time: {format_time(t)}", end="\r")
+        t -= 1
+        time_module.sleep(1)
+    print("Remaining time: 00:00")
+    playsound(ALARM)
+
+
+# ── Entry point ────────────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        parsed = parse_time_arg(sys.argv[1])
+        if parsed is None:
+            print(
+                "Incorrect time value. "
+                "Please specify time in minutes (Xm) or seconds (Ys), "
+                "or leave it blank for the default 25 minutes."
+            )
+            sys.exit(1)
+        total = parsed
     else:
-        if minutes >= 10 and seconds < 10:
-            print(str(minutes) + ":" + "0" + str(seconds), end="\r")
-        else:
-            if minutes < 10 and seconds >= 10:
-                print("0" + str(minutes) + ":" + str(seconds), end="\r")
-            else:
-                print(str(minutes) + ":" + str(seconds), end="\r")
+        total = DEFAULT_SECONDS
 
-
-# Main
-if len(sys.argv) > 1:
-    TIME = sys.argv[1]
-    if TIME[len(TIME)-1:len(TIME)] == "m":
-        t = int(TIME[0:len(TIME)-1]) * 60
-    else:
-        if TIME[len(TIME)-1:len(TIME)] == "s":
-            t = int(TIME[0:len(TIME)-1])
-        else:
-            print("Incorrect time value. Please specify time in minutes (Xm) or seconds (Ys) or leave it blank (25m by default)")
-else:
-    t = DEFAULT_TIME
-
-while t > 0:
-    print("Remaining time: ", end = "")
-    format_time(t)
-    t = t - 1
-    time.sleep(1)
-print("Remaining time: 00:00")    
-playsound(ALARM)
+    run_cli(total)
