@@ -11,11 +11,12 @@ A minimal, elegant Pomodoro timer for macOS — available as both a **desktop GU
 
 ## Features
 
-- ⏱ **Circular progress ring** that transitions from green → amber → red as time runs out
+- ⏱ **Circular progress ring** that transitions green → amber → red as time runs out
 - ▶️ **Start / Pause / Resume / Reset** controls
 - 🎛 **Quick presets** — 5, 15, 25 and 45 minutes
 - 🔔 **Alarm sound** when the session completes (non-blocking playback via `afplay`)
-- 🌙 **Modern dark UI** — glassmorphism card, subtle animations, system font
+- 📳 **Window shake** animation on alarm for a tactile alert feel
+- 🌙 **Modern dark UI** — glassmorphism card, pulse animation, system font
 - 💻 **CLI mode** still fully available as a lightweight fallback
 
 ---
@@ -28,31 +29,61 @@ A minimal, elegant Pomodoro timer for macOS — available as both a **desktop GU
 
 ## Installation
 
-### 1. Clone the repository
+### Option A — Run directly (recommended for development)
+
+**1. Clone the repository**
 
 ```bash
 git clone https://github.com/miguelsalva/minitimer.git
 cd minitimer
 ```
 
-### 2. Create and activate a virtual environment
+**2. Create and activate a virtual environment**
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3. Install dependencies
+**3. Install dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> **Requirements:** Python 3.9+, `PySide6`, `playsound`
+**4. Launch the app**
+
+```bash
+python minitimer_gui.py
+```
+
+> **Requirements:** Python 3.9+, `PySide6`
 
 > [!NOTE]
 > On macOS with a Homebrew-managed Python, installing packages system-wide is restricted (PEP 668).
 > Using a virtual environment as shown above is the recommended approach.
+
+---
+
+### Option B — Build a native `.app` with PyInstaller
+
+This produces a self-contained `minitimer.app` that works without a Python installation.
+
+```bash
+source .venv/bin/activate
+pip install pyinstaller
+pyinstaller minitimer.spec
+```
+
+Copy to Applications:
+
+```bash
+cp -r dist/minitimer.app /Applications/
+```
+
+The app will appear in Launchpad like any other macOS application.
+
+> **Note:** The resulting `.app` bundle is ~80–150 MB because it includes the Python interpreter and PySide6. This is expected for PyInstaller bundles.
 
 ---
 
@@ -61,24 +92,24 @@ pip install -r requirements.txt
 ### GUI (recommended)
 
 ```bash
-python3 minitimer_gui.py
+python minitimer_gui.py
 ```
 
-Select a preset (5m / 15m / 25m / 45m), press **Start**, and focus. The ring fills down as time passes and an alarm plays when the session ends.
+Select a preset (5m / 15m / 25m / 45m), press **Start**, and focus. The ring drains as time passes; an alarm plays and the window shakes when the session ends.
 
 ### CLI
 
 Run with the default Pomodoro duration (25 minutes):
 
 ```bash
-python3 minitimer.py
+python minitimer.py
 ```
 
 Or specify a custom duration:
 
 ```bash
-python3 minitimer.py 10m   # 10 minutes
-python3 minitimer.py 90s   # 90 seconds
+python minitimer.py 10m   # 10 minutes
+python minitimer.py 90s   # 90 seconds
 ```
 
 ---
@@ -87,19 +118,43 @@ python3 minitimer.py 90s   # 90 seconds
 
 ```
 minitimer/
-├── minitimer.py          # CLI timer (standalone, no GUI dependency)
-├── minitimer_gui.py      # PySide6 desktop application
-├── requirements.txt      # Python dependencies
+├── minitimer.py                     # CLI timer (standalone, no GUI dependency)
+├── minitimer_gui.py                 # PySide6 desktop application
+├── minitimer.spec                   # PyInstaller build spec
+├── requirements.txt                 # Python dependencies
+├── TODO.md                          # Upcoming work (Phase 2)
 ├── vinyl-piano_100bpm_C_minor.mp3   # Alarm sound
 └── images/
-    └── minitimer_logo.png
+    ├── tomato.png                   # App icon (512×512 PNG)
+    ├── minitimer.icns               # App icon (macOS .icns bundle)
+    └── minitimer_logo.png           # README logo
 ```
+
+---
+
+## Roadmap
+
+| Phase | Status | Description |
+|-------|--------|-------------|
+| 1 — Core GUI | ✅ Done | Circular ring, presets, alarm, dark theme, pulse animation |
+| 2 — Tomato-shaped window | 🔜 Next | Frameless window shaped like a tomato using `QPainterPath` |
+| 3 — Polish & packaging | ✅ Done | Shake animation, `.icns` icon, PyInstaller `.app` bundle |
+
+See [TODO.md](TODO.md) for the detailed task list for Phase 2.
 
 ---
 
 ## The Pomodoro Technique
 
-The [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a time management method that uses timed intervals (typically 25 minutes) of focused work separated by short breaks. minitimer implements the core timer functionality so you can follow this rhythm without distractions.
+The [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a time management method that uses timed intervals (typically 25 minutes) of focused work separated by short breaks. minitimer implements the core timer so you can follow this rhythm without distractions.
+
+---
+
+## Contributing
+
+Contributions, ideas, and feedback are welcome. Feel free to open an issue or submit a pull request.
+
+The cleanest entry point for contributors is **Phase 2** (tomato-shaped window) — see [TODO.md](TODO.md) for the task breakdown.
 
 ---
 
@@ -107,12 +162,6 @@ The [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a 
 
 - Alarm sound: [vinyl-piano](https://samplefocus.com/samples/vinyl-piano) from [Sample Focus](https://samplefocus.com), converted to MP3
 - Tomato icon: [Freepik](https://www.flaticon.com/authors/freepik) via [flaticon.com](https://www.flaticon.com)
-
----
-
-## Contributing
-
-Contributions, ideas and feedback are welcome. Feel free to open an issue or submit a pull request.
 
 ---
 

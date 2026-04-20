@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import (
     Qt, QTimer, QPropertyAnimation, QEasingCurve,
-    Property, QPointF, QRectF,
+    Property, QPointF, QRectF, QPoint,
 )
 from PySide6.QtGui import (
     QPainter, QPainterPath, QColor, QLinearGradient,
@@ -26,7 +26,8 @@ from PySide6.QtGui import (
 # ── Paths ──────────────────────────────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ALARM_PATH = os.path.join(SCRIPT_DIR, "vinyl-piano_100bpm_C_minor.mp3")
-LOGO_PATH  = os.path.join(SCRIPT_DIR, "images", "minitimer_logo.png")
+LOGO_PATH  = os.path.join(SCRIPT_DIR, "images", "tomato.png")
+ICNS_PATH  = os.path.join(SCRIPT_DIR, "images", "minitimer.icns")
 
 DEFAULT_SECONDS = 1500  # 25 minutes
 
@@ -314,6 +315,13 @@ class MinitimerWindow(QMainWindow):
         self._qt_timer.setInterval(1000)
         self._qt_timer.timeout.connect(self._tick)
 
+        # Shake state
+        self._shake_timer = QTimer(self)
+        self._shake_timer.setInterval(40)
+        self._shake_timer.timeout.connect(self._shake_tick)
+        self._shake_step  = 0
+        self._shake_origin: QPoint | None = None
+
         self._build_ui()
 
     # ── Build ──────────────────────────────────────────────────────────────────
@@ -403,6 +411,7 @@ class MinitimerWindow(QMainWindow):
             self._btn_play.setText("Start")
             self._session_lbl.setText("Session complete ✓")
             play_alarm()
+            self._start_shake()
 
     def _on_play(self):
         if self._running:
@@ -424,6 +433,24 @@ class MinitimerWindow(QMainWindow):
         self._btn_play.setText("Start")
         self._session_lbl.setText("Focus Session")
         self._ring.set_state(self._remaining, self._total, False)
+
+    # ── Shake / vibration ─────────────────────────────────────────────────────
+    _SHAKE_OFFSETS = [8, -8, 6, -6, 4, -4, 2, -2, 0]
+
+    def _start_shake(self):
+        self._shake_origin = self.pos()
+        self._shake_step   = 0
+        self._shake_timer.start()
+
+    def _shake_tick(self):
+        if self._shake_step >= len(self._SHAKE_OFFSETS):
+            self._shake_timer.stop()
+            if self._shake_origin is not None:
+                self.move(self._shake_origin)
+            return
+        offset = self._SHAKE_OFFSETS[self._shake_step]
+        self.move(self._shake_origin + QPoint(offset, 0))
+        self._shake_step += 1
 
     def _select_preset(self, seconds: int, idx: int):
         self._qt_timer.stop()
